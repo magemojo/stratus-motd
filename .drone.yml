@@ -34,7 +34,8 @@ type: ssh
 name: dev
 
 server:
-  host: DEV_HOST
+  host:
+    from_secret: DEV_HOST
   user: ubuntu
   ssh_key:
     from_secret: DEV_SSH_KEY

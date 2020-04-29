@@ -5,10 +5,10 @@ name: master
 
 server:
   host:
-    from_secret: DEV_HOST
+    from_secret: PROD_HOST
   user: ubuntu
   ssh_key:
-    from_secret: DEV_SSH_KEY
+    from_secret: PROD_SSH_KEY
 
 steps:
 - name: master_deploy

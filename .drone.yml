@@ -1,6 +1,35 @@
 ---
 kind: pipeline
 type: ssh
+name: master
+
+server:
+  host: DEV_HOST
+  user: ubuntu
+  ssh_key:
+    from_secret: DEV_SSH_KEY
+
+steps:
+- name: master_deploy
+  commands:
+  - echo "HELLO THIS IS PATRICK"
+  - cd /tmp
+  - rm -rf /tmp/stratus-motd
+  - git clone git@github.com:magemojo/stratus-motd.git /tmp/stratus-motd
+  - cd /tmp/stratus-motd/
+  - rsync -avz /tmp/stratus-motd/ /home/ubuntu/web/magemojo/motd/ --exclude=.git*
+  
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  - merge
+clone:
+  disable: true
+---
+kind: pipeline
+type: ssh
 name: dev
 
 server:
@@ -47,3 +76,4 @@ steps:
 
 depends_on:
   - dev
+  - master

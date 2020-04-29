@@ -4,7 +4,7 @@ type: ssh
 name: master
 
 server:
-  host: 
+  host:
     from_secret: DEV_HOST
   user: ubuntu
   ssh_key:

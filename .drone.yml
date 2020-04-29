@@ -4,7 +4,8 @@ type: ssh
 name: master
 
 server:
-  host: DEV_HOST
+  host: 
+    from_secret: DEV_HOST
   user: ubuntu
   ssh_key:
     from_secret: DEV_SSH_KEY
@@ -65,7 +66,8 @@ steps:
 - name: slack
   image: plugins/slack
   settings:
-    webhook: SLACK_HOOK
+    webhook: 
+      from_secret: SLACK_HOOK
     channel: magemojo-github
     template: >
       {{#success build.status}}

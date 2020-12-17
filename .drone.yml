@@ -1,6 +1,84 @@
 ---
 kind: pipeline
 type: ssh
+name: dev-magemojo
+
+server:
+  host: dev.drone.magemojo.com:30022
+  user: drone
+  ssh_key:
+    from_secret: CI_DEV_SSH_KEY
+
+steps:
+- name: dev
+  commands:
+  - echo "HELLO MY NAME IS INIGO MONTOYA"
+  - cd /srv/web/static/motd
+  - git stash
+  - git pull origin dev
+trigger:
+  branch:
+  - dev
+  event:
+  - push
+  - merge
+clone:
+  disable: true
+---
+kind: pipeline
+type: ssh
+name: uat-magemojo
+
+server:
+  host: uat.drone.magemojo.com:30022
+  user: drone
+  ssh_key:
+    from_secret: CI_DEV_SSH_KEY
+
+steps:
+- name: uat_deploy
+  commands:
+  - echo "HELLO MY NAME IS INIGO MONTOYA"
+  - cd /srv/web/kb
+  - git stash
+  - git pull origin uat
+trigger:
+  branch:
+  - uat
+  event:
+  - push
+  - merge
+clone:
+  disable: true
+---
+kind: pipeline
+type: ssh
+name: prod-magemojo
+
+server:
+  host: prod.drone.magemojo.com:30022
+  user: drone
+  ssh_key:
+    from_secret: CI_PROD_SSH_KEY
+
+steps:
+- name: prod_deploy
+  commands:
+  - echo "HELLO MY NAME IS INIGO MONTOYA"
+  - cd /srv/web/static/motd
+  - git stash
+  - git pull origin master
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  - merge
+clone:
+  disable: true
+---
+kind: pipeline
+type: ssh
 name: master
 
 server:

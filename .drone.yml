@@ -13,7 +13,7 @@ steps:
 - name: dev
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
-  - cd /srv/web/static/motd
+  - cd /srv/web/motd
   - git stash
   - git pull origin dev
 trigger:
@@ -39,7 +39,7 @@ steps:
 - name: uat_deploy
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
-  - cd /srv/web/kb
+  - cd /srv/web/motd
   - git stash
   - git pull origin uat
 trigger:
@@ -65,7 +65,7 @@ steps:
 - name: prod_deploy
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
-  - cd /srv/web/static/motd
+  - cd /srv/web/motd
   - git stash
   - git pull origin master
 trigger:

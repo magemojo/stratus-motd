@@ -10,7 +10,7 @@ server:
     from_secret: CI_DEV_SSH_KEY
 
 steps:
-- name: dev
+- name: dev-deploy
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
   - cd /srv/web/motd
@@ -36,7 +36,7 @@ server:
     from_secret: CI_DEV_SSH_KEY
 
 steps:
-- name: uat_deploy
+- name: uat-deploy
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
   - cd /srv/web/motd
@@ -62,7 +62,7 @@ server:
     from_secret: CI_PROD_SSH_KEY
 
 steps:
-- name: prod_deploy
+- name: prod-deploy
   commands:
   - echo "HELLO MY NAME IS INIGO MONTOYA"
   - cd /srv/web/motd
